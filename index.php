@@ -1,8 +1,10 @@
 <?php
 require 'vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 use Aws\DynamoDb\DynamoDbClient;
-use Aws\DynamoDb\Exception\DynamoDbException;
 
 $client = new DynamoDbClient([
     'region' => $_ENV['AWS_REGION'],
@@ -12,7 +14,6 @@ $client = new DynamoDbClient([
         'secret' => $_ENV['AWS_SECRET_ACCESS_KEY'],
     ],
 ]);
-
 $mensagem = '';
 
 // INSERIR MEDICAMENTO
